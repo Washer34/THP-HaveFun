@@ -8,10 +8,10 @@
 require 'faker'
 
 # Création d'utilisateurs factices
-#User.create!(email: 'admin@example.com', password: 'password') # Utilisateur admin pour l'exemple
-#3.times do
-#  User.create!(email: Faker::Internet.email, password: 'password', description: Faker::Lorem.paragraph, first_name: Faker::Name.first_name,)
-#end
+User.create!(email: 'admin@example.com', password: 'password') # Utilisateur admin pour l'exemple
+3.times do
+  User.create!(email: Faker::Internet.email, password: 'password', description: Faker::Lorem.paragraph, first_name: Faker::Name.first_name,)
+end
 
 # Création d'événements factices
 User.all.each do |user|
