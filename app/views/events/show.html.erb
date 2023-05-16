@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-5">
+      <h2><%= @event.title %></h2>
+      <p>Description : <%= @event.description %></p>
+      <p>Début : <%= @event.start_date.strftime("%d %B %Y %H:%M ") %></p>
+      <p>Durée : <%= @event.duration %> minutes</p>
+      <p>Prix : <%= @event.price %>€</p>
+      <p>Lieu : <%= @event.location %></p>
+      <p>Organisé par : <%= @event.admin.first_name %></p>
+
+      <%= link_to "Retour", events_path, class: "btn btn-dark" %>
+    </div>
+  </div>
+</div>

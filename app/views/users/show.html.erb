@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-4">
+      <h1>Profil de <%= @user.first_name %></h1>
+
+      <% if current_user == @user %>
+        <%= link_to "Modifier le profil", edit_profile_user_path(@user), class: "btn btn-dark" %>
+        <%= link_to "Gestion du compte", edit_user_registration_path, class: "btn btn-dark" %>
+      <% end %>
+
+      <p><strong>Prénom :</strong> <%= @user.first_name %></p>
+      <p><strong>Nom :</strong> <%= @user.last_name %></p>
+      <p><strong>Description :</strong> <%= @user.description %></p>
+      <p><strong>Email :</strong> <%= @user.email %></p>
+      <p><strong>Date de création :</strong> <%= @user.created_at.strftime("%d/%m/%Y") %></p>
+
+      <h2>Tes Events : </h2>
+      <ul class="administered-event-list">
+        <% @user.administered_events.each do |event| %>
+          <li>
+            <span class="mx-1">&raquo;</span>
+            <%= link_to event.title, event_path(event), class: "text-white" %>
+            <span class="mx-1">&laquo;</span>
+          </li>
+          <!-- Afficher d'autres détails de l'événement ici -->
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

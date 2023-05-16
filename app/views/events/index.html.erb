@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+  </head>
+
+  <body>
+
+    <main role="main">
+      <div class="row">
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="col-12">
+          <div class="jumbotron mx-auto text-center d-flex align-items-center" style="background-image: url('assets/jumbotron.jpg'); background-size: cover; background-position: center; height: 50vh;">
+            <div class="container">
+              <h1 class="display-3 text-white">HaveFun!</h1>
+              <br>
+              <p class="text-white">Bienvenue sur le site de l'ambiance. Si toi aussi tu souhaites organiser des événements qui déchirent, t'es au bon endroit !</p>
+              <p class="text-white">Bonne nouvelle tu peux commencer dès maintenant !</p>
+              <br>
+              <p><%= link_to "Créer un Event &raquo;".html_safe, new_event_path, class: "btn btn-primary btn-lg" %></p>
+            </div>
+          </div>
+          <br><br><br><br>
+
+          <div class="container">
+            <!-- Example row of columns -->
+            <div class="row d-flex">
+              <% @events.each do |event| %>
+                <div class="col-md-4 col-lg-4 col-sm-4 flex-fill">
+                  <div class="card my-3">
+                    <div class="card-body">
+                      <h2 class="card-title"><%= truncate(event.title, length: 20) %></h2>
+                      <p class="card-text"><%= truncate(event.description, length: 30) %></p>
+                      <p class="card-text">
+                        <%= event.price %>€
+                        organisé par : <%= event.admin.first_name%>
+                        <%= link_to "Lire plus... &raquo;".html_safe, event_path(event), class: "btn btn-secondary float-end" %>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div> <!-- /container -->
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Bootstrap core JavaScript
+  </body>
+</html>
