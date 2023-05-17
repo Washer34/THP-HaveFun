@@ -5,9 +5,13 @@ ruby "3.0.0"
 
 gem 'faker'
 
+gem 'stripe'
+
 gem 'table_print'
 
 gem 'dotenv-rails'
+
+gem 'dotenv'
 
 gem 'sendgrid-ruby'
 

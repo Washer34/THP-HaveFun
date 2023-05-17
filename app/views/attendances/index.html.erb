@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-4">
+      <h1 class="text-center">Liste des Participants</h1>
+
+      <div class="d-flex flex-column align-items-center">
+        <% @attendances.each do |attendance| %>
+          <div class="col-md-4 col-lg-4 col-sm-4 flex-fill">
+            <h2><span class="mx-1">&raquo;</span><%= attendance.guest.first_name %><span class="mx-1">&laquo;</span></h2>
+          </div>
+          <!-- Afficher d'autres détails de l'attendance ici -->
+        <% end %>
+      </div>
+      <% if user_signed_in? && (current_user == @event.admin) %>
+        <%= link_to "Modifier l'événement", edit_event_path(@event), class: "btn btn-dark" %>
+      <% end %>
+
+      <%= link_to "Retour", events_path, class: "btn btn-dark" %>
+    </div>
+  </div>
+</div>

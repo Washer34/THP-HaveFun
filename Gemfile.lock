@@ -219,6 +219,7 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
+    stripe (8.5.0)
     table_print (1.5.7)
     thor (1.2.2)
     tilt (2.1.0)
@@ -260,6 +261,7 @@ DEPENDENCIES
   debug
   devise
   dockerfile-rails (>= 1.2)
+  dotenv
   dotenv-rails
   faker
   importmap-rails
@@ -272,6 +274,7 @@ DEPENDENCIES
   sendgrid-ruby
   sprockets-rails
   stimulus-rails
+  stripe
   table_print
   turbo-rails
   tzinfo-data

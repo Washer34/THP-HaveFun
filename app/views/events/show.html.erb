@@ -9,6 +9,14 @@
       <p>Lieu : <%= @event.location %></p>
       <p>Organisé par : <%= @event.admin.first_name %></p>
 
+      <% if user_signed_in? && current_user == @event.admin %>
+        <%= link_to "Voir les participants", attendances_path(event_id: @event.id), class: "btn btn-dark" %>
+      <% end %>
+
+
+      <% if user_signed_in? && (current_user != @event.admin && !@event.guests.include?(current_user)) %>
+        <%= button_to "Participer", checkout_create_path(total: @event.price, event: @event), class: "btn btn-success", data: {turbo: false} %>
+      <% end %>
       <%= link_to "Retour", events_path, class: "btn btn-dark" %>
     </div>
   </div>
