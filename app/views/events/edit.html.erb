@@ -1,3 +1,4 @@
+<br><br><br>
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-lg-5">
@@ -35,13 +36,19 @@
           <%= f.label :location, "Lieu" %><br />
           <%= f.text_field :location, class: "form-control" %>
         </div>
+        <br>
+        <div class="form-group">
+          <%= f.label :photo, "Photo" %><br />
+          <%= f.file_field :photo, class: "form-control" %>
+        </div>
 
         <div class="form-actions">
           <%= f.submit "Enregistrer les modifications", class: "btn btn-dark" %>
           <%= link_to "Retour", event_path(@event), class: "btn btn-dark float-end" %>
         </div>
-        <br><br><br><br>
-      <% end %>
+
+        <% end %>
+        <br><br>
         <div class="form-actions text-center">
           <%= button_to "Supprimer l'événement", event_path(@event), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer cet événement ?" }, class: "btn btn-danger" %>
         </div>

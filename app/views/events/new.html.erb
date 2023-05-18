@@ -1,7 +1,7 @@
 <br><br><br>
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-lg-4">
+    <div class="col-lg-5">
       <h2>Créer un nouvel événement</h2>
 
       <%= form_for(@event, html: { class: "form" }) do |f| %>
@@ -34,7 +34,7 @@
           <%= f.label :location, "Lieu" %><br>
           <%= f.text_field :location, class: "form-control" %>
         </div>
-
+        <br>
         <div class="form-actions">
           <%= f.submit "Créer l'événement", class: "btn btn-secondary" %>
           <%= link_to "Retour", events_path, class: "btn btn-dark float-end" %>

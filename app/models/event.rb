@@ -1,6 +1,7 @@
 class Event < ApplicationRecord
   has_many :attendances
   has_many :guests, through: :attendances, source: :guest
+  has_one_attached :photo
   belongs_to :admin, class_name: 'User'
 
   
