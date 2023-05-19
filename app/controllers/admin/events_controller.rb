@@ -1,9 +1,9 @@
-class EventsController < ApplicationController
-
-  before_action :authenticate_admin!, only: [:edit, :update, :destroy]
+class Admin::EventsController < ApplicationController
+  before_action :require_admin
+  before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
-    @events = Event.all
+    @events = Event.order(:status)
   end
 
   def new
@@ -26,7 +26,7 @@ class EventsController < ApplicationController
   end
 
   def edit
-    @event = Event.find(params[:id])
+    
   end
 
   def show
@@ -34,38 +34,38 @@ class EventsController < ApplicationController
   end
 
   def update
-    @event = Event.find(params[:id])
+    
     if @event.update(event_params)
       if params[:event][:photo].present?
         @event.photo.attach(params[:event][:photo])
       end
-      flash[:notice] = "Event mis à jour avec succès."
-      redirect_to event_path(@event)
+      redirect_to admin_events_path, notice: 'Event mis à jour avec succès.'
     else
-      redirect_to edit_event_path(@event)
-      flash[:alert] = @event.errors.full_messages.join(", ")
+      flash[:alert] = @user.errors.full_messages.join(", ")
+      render :edit
     end
   end
 
   def destroy
-    @event = Event.find(params[:id])
     @event.destroy
-    flash[:notice] = "Événement supprimé avec succès."
-    redirect_to events_path
+    redirect_to admin_events_path, notice: 'Event supprimé avec succès.'
   end
 
   private
-
-  def authenticate_admin!
+  
+  def set_event
     @event = Event.find(params[:id])
-    unless current_user == @event.admin
-      flash[:alert] = "Vous n'êtes pas autorisé à effectuer cette action."
-      redirect_to events_path
+  end
+
+  def require_admin
+    unless current_user && current_user.is_admin?
+      flash[:alert] = "Accès non autorisé"
+      redirect_to root_path
     end
   end
 
   def event_params
-    params.require(:event).permit(:title, :description, :start_date, :duration, :price, :location, :photo)
+    params.require(:event).permit(:title, :description, :start_date, :duration, :price, :location, :photo, :status)
   end
 
 end

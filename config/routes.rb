@@ -17,6 +17,12 @@ Rails.application.routes.draw do
     get 'success', to: 'checkout#success', as: 'checkout_success'
   end
 
+  namespace :admin do
+    root 'admin#index'
+    resources :users
+    resources :events
+  end
+
   resources :attendances
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")

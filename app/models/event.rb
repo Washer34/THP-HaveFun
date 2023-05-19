@@ -1,4 +1,5 @@
 class Event < ApplicationRecord
+  enum status: [:pending, :approved, :rejected]
   has_many :attendances
   has_many :guests, through: :attendances, source: :guest
   has_one_attached :photo

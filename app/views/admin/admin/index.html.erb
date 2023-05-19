@@ -1,0 +1,21 @@
+<br><br>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-5">
+      <h1>Bienvenue <%= @user.first_name %> sur ton Dashboard Admin</h1>
+<br><br>
+      <div>
+        <h2>Gestion des utilisateurs</h2>
+        <%= link_to "Gérer les utilisateurs", admin_users_path, class: "btn btn-dark" %>
+      </div>
+      <br><br><br>
+      <div>
+        <h2>Gestion des événements</h2>
+        <% if @pending_events_count > 0 %>
+          <p><span class="notification-count"><%= @pending_events_count %> events en attente.</span></p>
+        <% end %>
+        <%= link_to "Gérer les événements", admin_events_path, class: "btn btn-dark" %>
+      </div>
+    </div>
+  </div>
+</div>

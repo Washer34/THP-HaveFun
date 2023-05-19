@@ -35,19 +35,21 @@
             <!-- Example row of columns -->
             <div class="row d-flex">
               <% @events.each do |event| %>
-                <div class="col-md-4 col-lg-4 col-sm-4 flex-fill">
-                  <div class="card my-3">
-                    <div class="card-body">
-                      <h2 class="card-title"><%= truncate(event.title, length: 20) %></h2>
-                      <p class="card-text"><%= truncate(event.description, length: 30) %></p>
-                      <p class="card-text">
-                        <%= event.price %>€
-                        organisé par : <%= event.admin.first_name%>
-                        <%= link_to "Lire plus... &raquo;".html_safe, event_path(event), class: "btn btn-secondary float-end" %>
-                      </p>
+                <% if event.approved? %>
+                  <div class="col-md-4 col-lg-4 col-sm-4 flex-fill">
+                    <div class="card my-3">
+                      <div class="card-body">
+                        <h2 class="card-title"><%= truncate(event.title, length: 20) %></h2>
+                        <p class="card-text"><%= truncate(event.description, length: 30) %></p>
+                        <p class="card-text">
+                          <%= event.price %>€
+                          organisé par : <%= event.admin.first_name%>
+                          <%= link_to "Lire plus... &raquo;".html_safe, event_path(event), class: "btn btn-secondary float-end" %>
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
+                <% end %>
               <% end %>
             </div>
           </div>

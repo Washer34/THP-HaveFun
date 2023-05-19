@@ -1,0 +1,34 @@
+<br><br>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-5">
+      <div>
+        <h1>Liste des utilisateurs</h1>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Prénom</th>
+              <th>Nom</th>
+              <th>Email</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td><%= user.first_name %></td>
+                <td><%= user.last_name %></td>
+                <td><%= user.email %></td>
+                <td><%= link_to "Modifier", edit_admin_user_path(user), class: "btn btn-primary" %></td>
+                <td>
+                  <%= button_to "Supprimer", admin_user_path(user), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer cet utilisateur ?" }, class: "btn btn-danger" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

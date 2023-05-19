@@ -1,0 +1,46 @@
+<br><br>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-5">
+      <div>
+        <h1>Liste des Events</h1>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Titre</th>
+              <th>Organisateur</th>
+              <th>Description</th>
+              <th>Prix</th>
+              <th>Status</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @events.each do |event| %>
+              <tr>
+                <td><%= truncate(event.title, length: 15) %></td>
+                <td><%= event.admin.first_name %></td>
+                <td><%= truncate(event.description, length: 15) %></td>
+                <td><%= event.price %></td>
+                <td>
+                  <% if event.pending? %>
+                    <span class="badge rounded-pill bg-warning">En attente</span>
+                  <% elsif event.approved? %>
+                    <span class="badge rounded-pill bg-success">Approuvé</span>
+                  <% elsif event.rejected? %>
+                    <span class="badge rounded-pill bg-danger">Rejeté</span>
+                  <% end %>                    
+                </td>
+                <td><%= link_to "Modifier", edit_admin_event_path(event), class: "btn btn-primary" %></td>
+                <td>
+                  <%= button_to "Supprimer", admin_event_path(event), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer cet event ?" }, class: "btn btn-danger" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -24,6 +24,16 @@
           </ul>
           <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
+              <% if current_user.is_admin? %>
+                <li class="nav-item">
+                  <%= link_to admin_root_path, class: "nav-link" do %>
+                    Dashboard
+                    <span class="badge bg-primary rounded-pill">
+                      <%= Event.pending.count %>
+                    </span>
+                  <% end %>
+                </li>
+              <% end %>
               <li class="nav-item">
                 <%= link_to "Mon profil", user_path(current_user), class: "nav-link" %>
               </li>

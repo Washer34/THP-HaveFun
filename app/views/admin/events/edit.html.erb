@@ -1,0 +1,76 @@
+<br><br><br>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-5">
+      <h1>Modifier l'événement</h1>
+      
+      <%= form_for([:admin, @event]) do |f| %>
+
+        <%= render "devise/shared/error_messages", resource: @event %>
+
+        <div class="form-group">
+          <%= f.label :start_date, "Date de début" %><br />
+          <%= f.datetime_select :start_date, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :duration, "Durée (en minutes)" %><br />
+          <%= f.number_field :duration, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :title, "Titre" %><br />
+          <%= f.text_field :title, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :description, "Description" %><br />
+          <%= f.text_area :description, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :price, "Prix" %><br />
+          <%= f.number_field :price, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :location, "Lieu" %><br />
+          <%= f.text_field :location, class: "form-control" %>
+        </div>
+        <br>
+        <div class="form-group">
+          <%= f.label :photo, "Photo" %><br />
+          <%= f.file_field :photo, class: "form-control" %>
+        </div>
+        <br>
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+          <% Event.statuses.keys.each do |status| %>
+            <% btn_class = case status
+                           when 'pending'
+                             'btn-warning'
+                           when 'rejected'
+                             'btn-danger'
+                           when 'approved'
+                             'btn-success'
+                           else
+                             'btn-outline-primary'
+                           end %>
+            <input type="radio" class="btn-check" name="event[status]" id="status_<%= status %>" value="<%= status %>" <%= 'checked' if @event.status == status %>>
+            <label class="btn <%= btn_class %>" for="status_<%= status %>"><%= status.capitalize %></label>
+          <% end %>
+        </div>
+        <br><br>
+
+        <div class="form-actions">
+          <%= f.submit "Enregistrer les modifications", class: "btn btn-dark" %>
+          <%= link_to "Retour", event_path(@event), class: "btn btn-dark float-end" %>
+        </div>
+
+        <% end %>
+        <br><br>
+        <div class="form-actions text-center">
+          <%= button_to "Supprimer l'événement", event_path(@event), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer cet événement ?" }, class: "btn btn-danger" %>
+        </div>
+    </div>
+  </div>
+</div>

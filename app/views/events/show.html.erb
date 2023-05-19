@@ -10,7 +10,7 @@
       <p>Lieu : <%= @event.location %></p>
       <% if @event.photo.attached?%>
       <br><br><br>
-        <%= image_tag photo %>
+        <%= image_tag @event.photo %>
       <% end %>
       <br>
       <p>Organisé par : <%= @event.admin.first_name %></p>

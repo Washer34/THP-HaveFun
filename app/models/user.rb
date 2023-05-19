@@ -13,4 +13,5 @@ class User < ApplicationRecord
   has_many :events, through: :reservations
   has_many :administered_events, class_name: 'Event', foreign_key: 'admin_id'
   has_one_attached :avatar
+  attribute :is_admin, :boolean
 end
